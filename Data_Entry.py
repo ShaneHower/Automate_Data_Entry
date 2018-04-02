@@ -18,7 +18,7 @@ class DataEntry:
         return full_text
 
     # inserts the data from each value of full_text to the next empty row
-    # had to intiate create the work book in execute and activate it in this method otherwise it
+    # had to create the work book in execute and activate it in this method otherwise it
     # would create a blank XL sheet
     def insert_values(self, doc_text, wb):
         # activate workbook
