@@ -4,9 +4,8 @@ import docx
 # only issue with this class is that it only works with docx and it will break if
 # a column has more than one word, have to figure out how to account for that.
 class DataEntry:
-    def __init__(self, file, column_labels, file_name):
+    def __init__(self, file, file_name):
         self.file = file
-        self.column_labels = column_labels
         self.file_name = file_name
 
     # appends the text from doc to list
@@ -24,7 +23,6 @@ class DataEntry:
         # activate workbook
         ws = wb.active
         # populates first row with the labels
-        ws.append(self.column_labels)
 
         # inserts the rest of the data
         for data in doc_text:
@@ -35,7 +33,9 @@ class DataEntry:
     def execute(self):
         #create a work book
         wb = Workbook()
-        task = DataEntry(self.file, self.column_labels, self.file_name)
+        task = DataEntry(self.file, self.file_name)
         full_text = task.get_doc_text()
         task.insert_values(full_text, wb)
         wb.save("{0}.xlsx".format(self.file_name))
+
+
